@@ -13,6 +13,7 @@ tabtitle = 'dash_daq'
 sourceurl = 'https://dash.plot.ly/dash-daq'
 sourceurl2 = 'https://dash.plot.ly/state'
 githublink = 'https://github.com/aidanjdm/dash-daq-state'
+options_list = ['Cats', 'Dogs', 'Birds', 'Frogs']
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -56,7 +57,7 @@ app.layout = html.Div(children=[
         html.Div([
             html.H6('Category One:'),
                 html.Div([
-                    dcc.Input(id='input-1', type='text', value='Cats'),
+                    dcc.Dropdown(id='input-1', options= [{'label':i, 'value':i} for i in options_list], value=options_list[0]),
                     dcc.RadioItems(
                         id='drop-1',
                         options=[{'label': j, 'value': k} for j, k in zip(colorlist, range(0,3))],
@@ -77,7 +78,7 @@ app.layout = html.Div(children=[
         html.Div([
             html.H6('Category Two:'),
                 html.Div([
-                    dcc.Input(id='input-2', type='text', value='Dogs'),
+                    dcc.Dropdown(id='input-2', options= [{'label':i, 'value':i} for i in options_list], value=options_list[1]),
                     dcc.RadioItems(
                         id='drop-2',
                         options=[{'label': j, 'value': k} for j, k in zip(colorlist, range(0,6))],
