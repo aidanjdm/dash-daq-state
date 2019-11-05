@@ -9,10 +9,10 @@ import dash_daq as daq
 
 ########### Define a few variables ######
 
-tabtitle = 'Dash DAQ'
+tabtitle = 'dash_daq'
 sourceurl = 'https://dash.plot.ly/dash-daq'
 sourceurl2 = 'https://dash.plot.ly/state'
-githublink = 'https://github.com/austinlasseter/dash-daq-state'
+githublink = 'https://github.com/aidanjdm/dash-daq-state'
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -22,8 +22,8 @@ app.title=tabtitle
 
 ######### Define the figure
 
-colorlist=['Pale Yellow', 'Deep Yellow', 'Brown',  'Leaf Green', 'Jungle Green', 'Violet']
-palette=['#fffbc9',  '#fbec5d', '#6b3e26', '#38bc1c', '#004b49', '#b323f6']
+colorlist=['Blue', 'Indigo', 'Deep Purple']
+palette=['#1565c0', '#283593', '#311b92']
 
 def make_my_cool_figure(input1, input2, drop1, drop2, knob1, knob2):
     drop1=int(drop1)
@@ -31,7 +31,7 @@ def make_my_cool_figure(input1, input2, drop1, drop2, knob1, knob2):
     myfavoritecolors=[palette[drop1], palette[drop2]]
     x_list=[input1, input2]
     y_list=[knob1, knob2]
-    mytitle=f"Let's talk about {input1} and {input2}!"
+    mytitle=f"{input1} vs. {input2}"
     mydata = [go.Bar(x=x_list,
                     y=y_list,
                     marker=dict(color=myfavoritecolors))]
@@ -46,28 +46,28 @@ def make_my_cool_figure(input1, input2, drop1, drop2, knob1, knob2):
 
 app.layout = html.Div(children=[
     html.Div([
-        html.H4(['Build a figure!'], className='six columns'),
-        html.Div([html.Button(id='submit-button', n_clicks=0, children='Submit')], className='six columns'),
+        html.H4(['Set up your Chart'], className='six columns'),
+        html.Div([html.Button(id='submit-button', n_clicks=1, children='Submit')], className='six columns'),
     ], className='twelve columns'),
 
 
     html.Div([
         # Input 1
         html.Div([
-            html.H6('Category 1:'),
+            html.H6('Category One:'),
                 html.Div([
-                    dcc.Input(id='input-1', type='text', value='Monkeys'),
+                    dcc.Input(id='input-1', type='text', value='Cats'),
                     dcc.RadioItems(
                         id='drop-1',
-                        options=[{'label': j, 'value': k} for j, k in zip(colorlist, range(0,6))],
-                        value=2
+                        options=[{'label': j, 'value': k} for j, k in zip(colorlist, range(0,3))],
+                        value=1
                     ),
                 ], className='four columns'),
                 html.Div([
                     daq.Knob(
                           id='knob-1',
-                          max=10,
-                          value=5,
+                          max=100,
+                          value=50,
                           min=0
                         ),
                 ], className='two columns'),
@@ -75,20 +75,20 @@ app.layout = html.Div(children=[
 
         # Input 2
         html.Div([
-            html.H6('Category 2:'),
+            html.H6('Category Two:'),
                 html.Div([
-                    dcc.Input(id='input-2', type='text', value='Bananas'),
+                    dcc.Input(id='input-2', type='text', value='Dogs'),
                     dcc.RadioItems(
                         id='drop-2',
                         options=[{'label': j, 'value': k} for j, k in zip(colorlist, range(0,6))],
-                        value=1
+                        value=2
                     ),
                 ], className='four columns'),
                 html.Div([
                     daq.Knob(
                           id='knob-2',
-                          max=10,
-                          value=8,
+                          max=100,
+                          value=25,
                           min=0
                         ),
                 ], className='two columns'),
